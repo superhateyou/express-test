@@ -1,7 +1,7 @@
 import  express  from 'express';
 import mongoose from 'mongoose';
 
-import Post from './Post.js';
+import Post from './REST/Post.js';
 
 const PORT = 5000;
 const DB_URL = 'mongodb+srv://superlovesyoutest:ue5EU4SQmZY6n8Dt@cluster0.jisxsds.mongodb.net/?retryWrites=true&w=majority';
