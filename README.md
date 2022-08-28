@@ -9,7 +9,7 @@ Request can be made via Postman.
 
 Implemented REST api methods for Posts router:
 
-- POST ``/api/posts`
+- POST ``/api/posts``
 - GET ``/api/posts``
 - GET ``/api/posts/:id``
 - PUT ``/api/posts/:id``
