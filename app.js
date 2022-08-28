@@ -4,7 +4,7 @@ import router from './CRUD/router.js';
 
 import DB_URL from './Config/database.js';
 
-const PORT = 5000;
+const PORT = 5001;
 
 const app = express();
 
