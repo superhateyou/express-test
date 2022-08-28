@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Post from '../Post';
+import PostService from '../Service/PostService';
 
 class PostController {
   async create(req: any, res: any) {
     try {
-      const {author, title, content, picture} = req.body;
-      const post = await Post.create({author, title, content, picture});
+      console.log(req.files)
+      const post = await PostService.create(req.body, req.files.picture);
       res.json(post);
     } catch (e) {
       res.status(500).json(e);
@@ -14,7 +14,7 @@ class PostController {
 
   async getAll(req: any, res: any) {
     try {
-      const posts = await Post.find();
+      const posts = await PostService.getAll();
       return res.json(posts)
     } catch (e) {
       res.status(500).json(e);
@@ -23,11 +23,7 @@ class PostController {
 
   async getById(req: any, res: any) {
     try {
-      const {id} = req.params;
-      if (!id) {
-         res.status(400).json({message: 'Invalid Id'})
-      }
-      const postById = await Post.findById(id);
+      const postById = await PostService.getById(req.params.id);
       return res.json(postById);
     } catch (e) {
       res.status(500).json(e);
@@ -36,11 +32,7 @@ class PostController {
 
   async update(req: any, res: any) {
     try {
-      const post = req.body;
-      if (!post._id) {
-        res.status(400).json({message: 'Invalid Id'})
-      }
-      const updatedPost = await Post.findByIdAndUpdate(post._id, post, {new: true});
+      const updatedPost = await PostService.update(req.body);
       return res.json(updatedPost);
     } catch (e) {
       res.status(500).json(e);
@@ -49,11 +41,7 @@ class PostController {
 
   async delete(req: any, res: any) {
     try {
-      const {id} = req.params;
-      if (!id) {
-         res.status(400).json({message: 'Invalid Id'})
-      }
-      const post = await Post.findByIdAndDelete(id);
+      const post = await PostService.delete(req.body.id);
       return res.json(post);
     } catch (e) {
       res.status(500).json(e);
